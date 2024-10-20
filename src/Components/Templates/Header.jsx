@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <Container>
       <LogoSection>
-        <Logo height={60} width={60} />
+        <Logo height={100} width={100} />
       </LogoSection>
 
       <Hamburger onClick={toggleMenu}>
@@ -45,17 +45,16 @@ export default Header;
 // Styled components
 const Container = styled.div`
   display: flex;
-  width: 100%;
+  max-width: 97%;
   min-height: 100px;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid green;
   position: relative;
   padding: 0 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: flex-start;
     padding: 0 0px;
@@ -68,7 +67,7 @@ const LogoSection = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 100%;
     justify-content: center;
     padding: 10px 0;
@@ -82,7 +81,7 @@ const MainSection = styled.div`
   justify-content: center;
   transition: all 0.5s ease;
   
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 100%;
     justify-content: flex-start;
     padding: 10px 0;
@@ -101,7 +100,7 @@ const RightSection = styled.div`
   justify-content: center;
   transition: all 0.5s ease;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
   width:90%;
      &.open{
       
@@ -116,7 +115,7 @@ const HorizontalLine = styled.div`
   background: #dfdfdf;
   margin: 0px 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     display: none;
   }
 `;
@@ -138,7 +137,7 @@ const Button = styled.button`
     transform: scale(1.05);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 150px;
     margin-right:71px;
     max-width: 300px;
@@ -150,7 +149,7 @@ const Hamburger = styled.div`
   display: none;
   cursor: pointer;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     display: block;
     z-index: 100;
     position: absolute;
@@ -163,7 +162,7 @@ const HamburgerImg = styled.img`
   width: 40px;
   height: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 30px;
     height: 30px;
   }
@@ -175,7 +174,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 
- @media (max-width: 768px) {
+ @media (max-width: 1000px) {
     flex-direction: column;
     justify-content:normal;
     width: 100%;

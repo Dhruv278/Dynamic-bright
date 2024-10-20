@@ -29,7 +29,7 @@ const ServiceItem= ({ icon, itemName }) => {
     <ItemContainer ref={menuRef} onClick={handleToggleMenu} onMouseEnter={handleToggleMenu} onMouseLeave={() => setIsMenuOpen(false)}>
       <ItemDataContainer>
 
-      <ItemIcon src={icon} />
+      {/* <ItemIcon src={icon} /> */}
       <Item>{itemName}</Item>
       <ItemDownIcon src={DownIconPNG} />
       </ItemDataContainer>
@@ -60,7 +60,7 @@ const ItemDataContainer=styled.div`
 display:flex;
 position:relative;
 
-@media (max-width:764px){
+@media (max-width:1000px){
   margin:20px 0px;
   min-width:221px;
 }
@@ -90,9 +90,10 @@ const ItemDownIcon = styled.img`
 
 const DropdownMenu = styled.div`
   position: absolute;
-  top: 60px;
+  top: 50px;
   background-color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:5px 5px 5px black;
+  border:1px solid gray;
   padding: 10px;
   border-radius: 8px;
   z-index: 100;
@@ -100,7 +101,7 @@ const DropdownMenu = styled.div`
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  
+  min-width:300px;
   @keyframes fadeIn {
     to {
       opacity: 1;
