@@ -1,10 +1,32 @@
 import React, { useState, useRef } from 'react';
 import { Carousel } from 'antd';
-import styled from 'styled-components';
+import styled, { keyframes,css } from 'styled-components';
 import { Services } from '../../../Data/Service';
 import RightArrowPNG from '../../../Assets/Services/rightArrow.png';
 import RightWhiteArrow from '../../../Assets/Services/rightWhiteArrow.png';
 import LeftWhiteArrow from '../../../Assets/Services/leftWhiteArrow.png';
+
+
+const fadeInUp = keyframes`
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+const fadeRight = keyframes`
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
 
 const CarouselContainer = styled.div`
   position: relative;
@@ -13,15 +35,16 @@ const CarouselContainer = styled.div`
 `;
 
 const SlideContent = styled.div`
-  color: white;
-  width: 96%;
+  color: black !important;
+  width: 100%;
   height: 500px;
   padding: 40px;
   padding-bottom: 0px;
   @media (max-width: 1000px) {
     height: auto;
-    min-height: 600px;
+    min-height: 800px;
     padding: 20px;
+    width:90%;
     padding-bottom: 40px;
   }
 `;
@@ -40,14 +63,17 @@ const ContentSection = styled.div`
 
 const TextContent = styled.div`
   max-width: 70%;
-  @media (max-width: 1000px) {
+  
+      @media (max-width: 1000px) {
     max-width: 95%;
-  }
+  };
 `;
 
 const Heading = styled.h1`
   font-size: 48px;
   font-weight: 700;
+    visibility: ${({ inView }) => inView ? "visible" : 'hidden'};
+    animation: ${({ inView }) => inView ? css`${fadeInUp} 0.2s ease forwards` : 'none'};
   @media (max-width: 1000px) {
     text-align: center;
     font-size: 32px; /* Smaller font for mobile */
@@ -57,6 +83,8 @@ const Heading = styled.h1`
 const Subheading = styled.p`
   font-size: 18px;
   margin: 20px 0;
+    visibility: ${({ inView }) => inView ? "visible" : 'hidden'};
+      animation: ${({ inView }) => inView ? css`${fadeInUp} 0.2s ease forwards` : 'none'};
   @media (max-width: 1000px) {
     text-align: justify;
     padding: 10px;
@@ -70,7 +98,9 @@ const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
+   visibility: ${({ inView }) => inView ? "visible" : 'hidden'};
+    animation: ${({ inView }) => inView ? css`${fadeInUp} 0.2s ease forwards` : 'none'};
+ 
   @media (max-width: 1000px) {
     justify-content: center;
     flex-direction: column; /* Stack buttons vertically */
@@ -79,10 +109,11 @@ const ButtonGroup = styled.div`
 
 const ImageContainer = styled.div`
   flex-shrink: 0;
-  display: flex;
   width: 30%;
   justify-content: center;
   align-items: end;
+   visibility: ${({ inView }) => inView ? "visible" : 'hidden'};
+      animation: ${({ inView }) => inView ? css`${fadeRight} 0.4s ease forwards` : 'none'};
   img {
     max-width: 300px;
     border-radius: 8px;
@@ -99,8 +130,10 @@ const ImageResponsiveContainer = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+    visibility: ${({ inView }) => inView ? "visible" : 'hidden'};
+      animation: ${({ inView }) => inView ? css`${fadeRight} 0.4s ease forwards` : 'none'};
     img {
-      max-width: 100%; /* Adjust for full responsiveness */
+      max-width: 300px; /* Adjust for full responsiveness */
       border-radius: 8px;
     }
   }
@@ -143,6 +176,7 @@ const ArrowContainer = styled.div`
 
   @media (max-width:1350px){
    position:absolute;
+
    bottom: 15px;
    width:100%;
    align-items: center;
@@ -150,10 +184,7 @@ const ArrowContainer = styled.div`
   }
  
   @media (max-width: 1000px) {
-    position: relative;
-    bottom: 0;
-    margin-top: 10px;
-    justify-content: center;
+   display:none;
   }
 `;
 
@@ -161,7 +192,42 @@ const Arrow = styled.img`
   height: 40px;
   width: 40px;
   cursor: pointer;
-`;
+
+  @media (max-width: 1000px){
+  position:absolute;
+  top:45%;
+  left:2%;
+  height:30px;
+  width:30px;
+  opacity:0.9;
+  } 
+  `;
+
+const ResponsiveLeftArrow = styled.img`
+ display:none;
+  @media (max-width: 1000px){
+  display:flex;
+  position:absolute;
+  top:40%;
+  left:2%;
+  height:30px;
+  width:30px;
+  opacity:0.9;
+  } 
+  `;
+
+const ResponsiveRightArrow = styled.img`
+ display:none;
+  @media (max-width: 1000px){
+  display:flex;
+  position:absolute;
+  top:40%;
+  right:2%;
+  height:30px;
+  width:30px;
+  opacity:0.9;
+  } 
+  `;
 
 const CurrentSlideText = styled.div`
   font-size: 17px;
@@ -194,20 +260,20 @@ const CustomCarousel = () => {
       >
         {Services.map((service, index) => (
           <div key={index}>
-            <SlideContent style={{ background: `${service.gradient}` }}>
+            <SlideContent >
               <ContentSection>
-                <TextContent>
-                  <Heading>{service.name}</Heading>
-                  <ImageResponsiveContainer>
+                <TextContent >
+                  <Heading inView={index===currentSlide}>{service.name}</Heading>
+                  <ImageResponsiveContainer inView={index===currentSlide}>
                     <img src={service.coverImage} alt="Service" />
                   </ImageResponsiveContainer>
-                  <Subheading>{service.description}</Subheading>
-                  <ButtonGroup>
+                  <Subheading inView={index===currentSlide}>{service.description}</Subheading>
+                  <ButtonGroup inView={index===currentSlide}>
                     <ExploreButton>Explore <RightArrow src={RightArrowPNG} /></ExploreButton>
                     <RequestForCallButton>Request For Call</RequestForCallButton>
                   </ButtonGroup>
                 </TextContent>
-                <ImageContainer>
+                <ImageContainer inView={index===currentSlide}>
                   <img src={service.coverImage} alt="Service" />
                 </ImageContainer>
               </ContentSection>
@@ -220,6 +286,8 @@ const CustomCarousel = () => {
         <CurrentSlideText>{currentSlide + 1} of {Services.length}</CurrentSlideText>
         <Arrow src={RightWhiteArrow} onClick={nextSlide} />
       </ArrowContainer>
+      <ResponsiveLeftArrow src={LeftWhiteArrow} onClick={prevSlide} />
+      <ResponsiveRightArrow src={RightWhiteArrow} onClick={prevSlide} />
     </CarouselContainer>
   );
 };
@@ -241,7 +309,7 @@ const ExploreButton = styled.div`
 
   @media (max-width: 1000px) {
     font-size: 16px;
-    width: 140px;
+    width: 160px;
     margin-bottom: 10px; /* Add margin for stacked buttons */
   }
 `;
@@ -275,5 +343,6 @@ const RequestForCallButton = styled.div`
   @media (max-width: 1000px) {
     font-size: 16px;
     width: 160px;
+    margin-left:0;
   }
 `;

@@ -62,7 +62,8 @@ position:relative;
 
 @media (max-width:1000px){
   margin:20px 0px;
-  min-width:221px;
+  width:100%;
+  
 }
 `;
 

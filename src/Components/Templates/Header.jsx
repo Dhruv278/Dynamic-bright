@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Logo from '../Atoms/Logo';
 import ServiceIconPNG from '../../Assets/Header/service.png';
 import ServiceItem from '../Organisms/Header/ServiceItem'; // Assuming you have a hamburger icon
+import HamburgerIconPNG from  '../../Assets/Header/Hamburger.png'
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ const Header = () => {
       </LogoSection>
 
       <Hamburger onClick={toggleMenu}>
-        <HamburgerImg src={"///"} alt="Menu" />
+        <HamburgerImg src={HamburgerIconPNG} alt="Menu" />
       </Hamburger>
       <ContentSection  className={menuOpen ? 'open' : ''}>
 
@@ -101,11 +102,10 @@ const RightSection = styled.div`
   transition: all 0.5s ease;
 
   @media (max-width: 1000px) {
-  width:90%;
-     &.open{
-      
-     }
-   
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
   }
 `;
 
@@ -138,8 +138,7 @@ const Button = styled.button`
   }
 
   @media (max-width: 1000px) {
-    width: 150px;
-    margin-right:71px;
+    width: 200px;
     max-width: 300px;
     font-size: 16px;
   }
