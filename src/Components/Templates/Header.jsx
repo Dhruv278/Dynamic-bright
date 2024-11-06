@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Logo from '../Atoms/Logo';
 import ServiceIconPNG from '../../Assets/Header/service.png';
 import ServiceItem from '../Organisms/Header/ServiceItem'; // Assuming you have a hamburger icon
+import HamburgerIconPNG from  '../../Assets/Header/Hamburger.png'
+import HamburgerMenu from '../Atoms/Hamburger/Hamburger';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,12 +16,11 @@ const Header = () => {
   return (
     <Container>
       <LogoSection>
-        <Logo height={60} width={60} />
+        <Logo height={80} width={200} />
       </LogoSection>
-
-      <Hamburger onClick={toggleMenu}>
-        <HamburgerImg src={"///"} alt="Menu" />
-      </Hamburger>
+      <HamBurgerContainer>
+      <HamburgerMenu isOpen={menuOpen} toggleMenu={()=>setMenuOpen(!menuOpen)}/>
+      </HamBurgerContainer>
       <ContentSection  className={menuOpen ? 'open' : ''}>
 
       <MainSection className={menuOpen ? 'open' : ''}>
@@ -45,21 +46,20 @@ export default Header;
 // Styled components
 const Container = styled.div`
   display: flex;
-    position: relative;
-  width: 100%;
+  max-width: 97%;
   min-height: 100px;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid green;
   position: relative;
   padding: 0 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: flex-start;
     padding: 0 0px;
+    max-width:100%;
   }
 `;
 
@@ -69,7 +69,7 @@ const LogoSection = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 100%;
     justify-content: center;
     padding: 10px 0;
@@ -83,15 +83,8 @@ const MainSection = styled.div`
   justify-content: center;
   transition: all 0.5s ease;
   
-  @media (max-width: 768px) {
-    width: 100%;
-    justify-content: flex-start;
-    padding: 10px 0;
-
-    &.open{
-      flex-direction:column;
-      min-height:450px;
-    }
+  @media (max-width: 1000px) {
+    display:none;
   }
 `;
 
@@ -102,12 +95,11 @@ const RightSection = styled.div`
   justify-content: center;
   transition: all 0.5s ease;
 
-  @media (max-width: 768px) {
-  width:90%;
-     &.open{
-      
-     }
-   
+  @media (max-width: 1000px) {
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
   }
 `;
 
@@ -117,7 +109,7 @@ const HorizontalLine = styled.div`
   background: #dfdfdf;
   margin: 0px 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     display: none;
   }
 `;
@@ -127,7 +119,7 @@ const Button = styled.button`
   height: 50px;
   border: none;
   border-radius: 40px;
-  background-color: red;
+  background-color: #3a3fa6;
   color: white;
   font-size: 18px;
   font-weight: 700;
@@ -139,9 +131,8 @@ const Button = styled.button`
     transform: scale(1.05);
   }
 
-  @media (max-width: 768px) {
-    width: 150px;
-    margin-right:71px;
+  @media (max-width: 1000px) {
+    width: 200px;
     max-width: 300px;
     font-size: 16px;
   }
@@ -151,7 +142,7 @@ const Hamburger = styled.div`
   display: none;
   cursor: pointer;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     display: block;
     z-index: 100;
     position: absolute;
@@ -164,7 +155,7 @@ const HamburgerImg = styled.img`
   width: 40px;
   height: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 30px;
     height: 30px;
   }
@@ -176,7 +167,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 
- @media (max-width: 768px) {
+ @media (max-width: 1000px) {
     flex-direction: column;
     justify-content:normal;
     width: 100%;
@@ -193,5 +184,15 @@ justify-content:center;
       visibility: visible;
       padding-top: 10px;
     }
+  }
+`;
+
+const HamBurgerContainer=styled.div`
+  position:absolute;
+  top:40px;
+  right:30px;
+
+  @media (min-width:1000px){
+  display:none;
   }
 `;

@@ -2,13 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import DownIconPNG from '../../../Assets/Header/down-icon.png';
 
-const ServiceItem = ({ icon, itemName }) => {
+
+const ServiceItem= ({ icon, itemName }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // Toggle menu open/close
+  // Toggle menu open/close on click
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Open the menu on hover
+  const handleMouseEnter = () => {
+    setIsMenuOpen(true);
+  };
+
+  // Close the menu on mouse leave
+  const handleMouseLeave = () => {
+    setIsMenuOpen(false);
   };
 
   // Close the menu when clicking outside
@@ -25,19 +36,19 @@ const ServiceItem = ({ icon, itemName }) => {
   }, []);
 
   return (
-    <ItemContainer ref={menuRef} onClick={handleToggleMenu}>
+    <ItemContainer
+      ref={menuRef}
+      onClick={handleToggleMenu}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <ItemDataContainer>
         <Item>{itemName}</Item>
       </ItemDataContainer>
       <Underline className={isMenuOpen ? 'active' : ''} />
       {isMenuOpen && (
         <DropdownMenu>
-          {/* Example of a homescreen-style content */}
-          <MenuContent>
-            <h2>Home Screen</h2>
-            <p>Welcome to the dropdown homescreen!</p>
-            {/* Add more content or elements as needed */}
-          </MenuContent>
+          {itemName}
         </DropdownMenu>
       )}
     </ItemContainer>
@@ -45,10 +56,8 @@ const ServiceItem = ({ icon, itemName }) => {
 };
 
 export default ServiceItem;
-
 // Styled components
 const ItemContainer = styled.div`
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,13 +77,13 @@ const ItemDataContainer = styled.div`
 const Item = styled.div`
   text-transform: uppercase;
   margin: 0 10px;
-  font-size: 1rem;
+  font-size: 18px;
   position: relative;
   transition: color 0.3s ease;
   color:#3a3fa6;
-  font-weight:600;
+  font-weight:700;
   &:hover {
-    color: #3a3fa6;;
+    color: #1b1d4b;;
   }
 `;
 
@@ -88,7 +97,7 @@ const DropdownMenu = styled.div`
   position: absolute;
   top: 100%; /* Adjusted to appear below the item */
   left: 0;
-  background-color: pink;
+  background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px; /* Adjust padding as needed */
   border-radius: 8px;
@@ -130,9 +139,8 @@ const Underline = styled.div`
   left: 0;
   height: 2px;
   width: 0;
-  background-color: #ff6347;
+  background-color: #1b1d4b;
   transition: width 0.3s ease;
-
   &.active {
     width: 100%;
   }
