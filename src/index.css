@@ -1,11 +1,22 @@
+:root {
+  --themeColor: #3a3fa6;
+  /* var(--Lufga) */
+  --font:"UniNeue";
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Urbanist", sans-serif;
+  font-family: var(--font), sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  src: url("./Assets/fonts/UniNeue-Trial-Black.ttf");
+  font-family: "UniNeue";
 }
