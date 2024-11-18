@@ -1,5 +1,5 @@
 :root {
-  --themeColor: #3a3fa6;
+  --themeColor: #6c63ff;
   /* var(--Lufga) */
   --font:"UniNeue";
 }
@@ -17,6 +17,16 @@ code {
 }
 
 @font-face {
-  src: url("./Assets/fonts/UniNeue-Trial-Black.ttf");
+  src: url("./Assets/fonts/UniNeue-Trial-Regular.ttf");
   font-family: "UniNeue";
+}
+
+@font-face {
+  src: url("./Assets/fonts/UniNeue-Trial-Bold.ttf");
+  font-family: "UniNeue-bold";
+}
+
+
+.text-blue{
+  color: var(--themeColor);
 }

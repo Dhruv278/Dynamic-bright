@@ -1,16 +1,15 @@
 import React from 'react'
-import CustomCarousel from '../Organisms/Home/Carosaul'
 import styled from 'styled-components';
-import TestCustomCarousel from '../Organisms/Home/TestCarosaul';
-import Companyinfo from '../Molecules/Home/CompanyInfo/Companyinfo';
+import MainSectionCarosaul from '../Organisms/Home/HomeSection/MainSectionCarosaul';
+import OfferSection from '../Organisms/OfferSection/OfferSection';
 //  '../Organisms/Home/TestCarosaul';
 
 
 const Homepage = () => {
   return (
     <Container>
-      <Companyinfo />
-      {/* <TestCustomCarousel /> */}
+      <MainSectionCarosaul />
+      <OfferSection />
     </Container>
   )
 }

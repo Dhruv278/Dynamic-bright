@@ -1,0 +1,140 @@
+.offer-section-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding:30px 30px;
+    .header{
+        font-size: 24px;
+        font-weight: 300 !important;
+
+        width: 231px;
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+
+        .header_div{
+            width: 150px;
+            height: 6px;
+            border-radius: 15px;
+            background-color: var(--themeColor);
+        }   
+    }
+    .title_container{
+        width:58%;
+        margin-top: 30px;
+        .title{
+
+            text-align: center;
+            font-size: 60px;
+            font-weight: 700;
+        }
+    }
+
+    .offer_container{
+        
+        max-width: 1178px;
+  display: flex;
+  align-items: center;
+  overflow-x:auto; /* Hide the overflow to make scrolling seamless */
+  padding-bottom: 40px;
+  margin-top: 30px;
+  position: relative; /* Needed for animation positioning */
+  scroll-behavior: smooth; 
+//   animation: scroll 100s linear infinite; /* Infinite scroll animation */
+ 
+    }   
+    .offer_container::-webkit-scrollbar {
+        width: 5px; /* Width of the scrollbar */
+        height: 25px; /* Height of the scrollbar for horizontal scrolling */
+      }
+      
+      .offer_container::-webkit-scrollbar-track {
+        background: #D9D9D9;
+        ; /* Background color of the scrollbar track */
+        border-radius: 10px; /* Rounded corners for the track */
+      }
+      
+      .offer_container::-webkit-scrollbar-thumb {
+        background: #6c63ff; /* Scrollbar thumb color */
+        border-radius: 10px; /* Rounded corners for the thumb */
+        border: 2px solid #f1f1f1; /* Adds padding around the thumb */
+      }
+      
+      .offer_container::-webkit-scrollbar-thumb:hover {
+        background: #4b46c9; /* Darker color on hover */
+      }
+      
+      .offer_container::-webkit-scrollbar-corner {
+        background: transparent; /* For any corner areas */
+      }
+    .offer-card {
+        width: 314px;
+        flex-shrink: 0;
+        position: relative; /* Necessary for absolute positioning of ::after */
+        height: 488px; 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        border-radius: 30px;
+        margin-right: 20px;
+        padding: 10px 30px;
+
+        .explore-btn{
+            padding:5px 10px;
+            border-radius: 17px;
+            margin-top: 14px;
+            background-color: rgba(0, 0, 0, 0.384);
+            color:white;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                height: 15px;
+                width: 18px;
+                margin-left: 5px;
+            }
+        }
+    }
+    
+   .card-text-container {
+        height: 85%;
+        width: 314px;
+        font-size: 26px;
+        font-weight: 500;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        color: white;
+        z-index: 2; /* Ensure it's above the gradient */
+        position: relative; /* Required for z-index to take effect */
+    }
+    
+    .offer-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 18px;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(183, 255, 182, 0.2) 55.79%, rgba(0, 0, 0, 0.4) 75.73%);
+        z-index: 1; /* Keep this below the text */
+    }        
+}
+
+
+/* Keyframes for infinite scroll */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX( - calc((314px + 20px) * 5));/* Total width of all cards */
+      }
+  }

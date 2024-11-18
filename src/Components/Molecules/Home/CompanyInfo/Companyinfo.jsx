@@ -19,6 +19,25 @@ const Companyinfo = () => {
             </div>
             <div className='image_section'>
                 <img src={image.DEFAULT_PERSON} className='main_image'/>
+                <div className='blue_box'></div>
+                <div className='pink_box'></div>
+                <div className='orange_box'></div>
+                <div className='red_box'></div>
+            </div>
+        </div>
+        <div className='lower_section'>
+            <div className='company_logos'>
+                  <div className='trustedby_div'>
+                  TRUSTED BY:
+                  </div>
+                  <div className='logo_div'>
+                    <img className='logo' src={image.META_ICON}  />
+                    <img className='logo' src={image.GOOGLE_ICON}  />
+                    <img className='logo' src={image.NETFLIX_ICON}  />
+                    <img className='logo' src={image.PandG_ICON}  />
+                    <img className='logo' src={image.PAYOVER_ICON}  />
+                    <img className='logo' src={image.AIRBNB_ICON}  />
+                    </div>
             </div>
         </div>
     </div>
